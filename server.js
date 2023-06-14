@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const metafieldsRoutes = require('./routes/metafields')
-const productsRouts = require('./routes/products')
+//const metafieldsRoutes = require('./routes/metafields')
+//const productsRouts = require('./routes/products')
 //const mongoose = require('mongoose');
 const fs = require('fs');
 const cors = require('cors')
