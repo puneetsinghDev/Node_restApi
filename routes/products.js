@@ -4,9 +4,9 @@ const router = express.Router();
 
 // Tausif comment 
 // get all products
-router.get('/', getProduct,next)
-router.post('/', createProducts,next)
-router.delete('/:id',deleteProduct,next)
-router.put('/:id',updateProduct,next)
+router.get('/', getProduct)
+router.post('/', createProducts)
+router.delete('/:id',deleteProduct)
+router.put('/:id',updateProduct)
 
 module.exports = router
