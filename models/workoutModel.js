@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const workoutSchema = new Schema({
+const studentSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -11,10 +11,13 @@ const workoutSchema = new Schema({
         type: String,
         required: true,
     },
-    phone: {
+    rollno: {
         type: Number,
         required: true
     }
-}, { timestamps: true })
+    }, 
+    { timestamps: true }, 
+    {collection: 'students'}
+    )
 
-module.exports = mongoose.model('Workout', workoutSchema);
+module.exports = mongoose.model('student', studentSchema);
