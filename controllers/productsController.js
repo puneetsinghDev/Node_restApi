@@ -3,14 +3,16 @@ const axios = require("axios");
 require('dotenv').config();
 const studentSchema = require('../models/workoutModel');
 const { error } = require("console");
-const { nameValidation } = require("../helper/validation");
+const {validate_data, validateUser}= require("../helper/validation");
+
+
 
 const token = process.env.ACCESS_TOKEN;
 //get all workouts
 
 const getProduct = async (req, res) => {
-
-  console.log(nameValidation("puneet singh"));
+ const dataname="puneet singh";
+  console.log(nameValidation(dataname));
     studentSchema.find((error, data) => {
       try {
         if (error) {
@@ -27,23 +29,35 @@ const getProduct = async (req, res) => {
 };
 
 // create new metafields for specific product
-const createProducts = async (req, res) => {
+const createProducts = 
+async (req, res) => {
+// validate 
+ 
+    const value = validateUser(req.body);
+   if(value.error){
+    console.log(value.error);
+    res.json(value.error);
+   }else{
+    studentSchema.create(req.body, (error, data) => {
+      try {
+        if (error) {
+          //return res.json(error)
+          return next(error)
+        } else {
+          console.log(data)
+          res.json(data)
+        } 
+      } catch (error) {
+        res.json(error)
+      }
+      
+    })
+   }
+
+
 
  
-  studentSchema.create(req.body, (error, data) => {
-    try {
-      if (error) {
-        //return res.json(error)
-        return next(error)
-      } else {
-        console.log(data)
-        res.json(data)
-      } 
-    } catch (error) {
-      res.json(error)
-    }
-    
-  })
+ 
 };
 
 const deleteProduct = async (req,res) => {
